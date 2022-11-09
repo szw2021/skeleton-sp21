@@ -89,4 +89,8 @@ public class Commit implements Serializable {
     public String getID() {
         return this.id;
     }
+
+    public Map<String, String> getPathToBlobID() {
+        return pathToBlobID;
+    }
 }
