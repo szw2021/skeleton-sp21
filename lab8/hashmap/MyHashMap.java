@@ -132,6 +132,9 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
 
     @Override
     public V get(K key) {
+        if (buckets == null) {
+            return null;
+        }
         int index = hashCode(key);
         Collection<Node> bucket = buckets[index];
         for (Node node : bucket) {
@@ -161,6 +164,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
         }
         size++;
         bucket.add(new Node(key, value));
+        set.add(key);
         if (size / initialSize > loadFactor) {
             resize();
         }
