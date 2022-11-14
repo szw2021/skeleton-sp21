@@ -1,15 +1,14 @@
 package hashmap;
 
-import org.checkerframework.checker.units.qual.C;
-
 import java.util.*;
 
 /**
- *  A hash table-backed Map implementation. Provides amortized constant time
- *  access to elements via get(), remove(), and put() in the best case.
+ * A hash table-backed Map implementation. Provides amortized constant time
+ * access to elements via get(), remove(), and put() in the best case.
+ * <p>
+ * Assumes null keys will never be inserted, and does not resize down upon remove().
  *
- *  Assumes null keys will never be inserted, and does not resize down upon remove().
- *  @author YOUR NAME HERE
+ * @author YOUR NAME HERE
  */
 public class MyHashMap<K, V> implements Map61B<K, V> {
 
@@ -40,7 +39,9 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     }
 
 
-    /** Constructors */
+    /**
+     * Constructors
+     */
     public MyHashMap() {
         buckets = createTable(this.initialSize);
         for (int i = 0; i < this.initialSize; i++) {
@@ -61,7 +62,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      * The load factor (# items / # buckets) should always be <= loadFactor
      *
      * @param initialSize initial size of backing array
-     * @param maxLoad maximum load factor
+     * @param maxLoad     maximum load factor
      */
     public MyHashMap(int initialSize, double maxLoad) {
         this.loadFactor = maxLoad;
@@ -81,19 +82,19 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
 
     /**
      * Returns a data structure to be a hash table bucket
-     *
+     * <p>
      * The only requirements of a hash table bucket are that we can:
-     *  1. Insert items (`add` method)
-     *  2. Remove items (`remove` method)
-     *  3. Iterate through items (`iterator` method)
-     *
+     * 1. Insert items (`add` method)
+     * 2. Remove items (`remove` method)
+     * 3. Iterate through items (`iterator` method)
+     * <p>
      * Each of these methods is supported by java.util.Collection,
      * Most data structures in Java inherit from Collection, so we
      * can use almost any data structure as our buckets.
-     *
+     * <p>
      * Override this method to use different data structures as
      * the underlying bucket type
-     *
+     * <p>
      * BE SURE TO CALL THIS FACTORY METHOD INSTEAD OF CREATING YOUR
      * OWN BUCKET DATA STRUCTURES WITH THE NEW OPERATOR!
      */
@@ -104,7 +105,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     /**
      * Returns a table to back our hash table. As per the comment
      * above, this table can be an array of Collection objects
-     *
+     * <p>
      * BE SURE TO CALL THIS FACTORY METHOD WHEN CREATING A TABLE SO
      * THAT ALL BUCKET TYPES ARE OF JAVA.UTIL.COLLECTION
      *
